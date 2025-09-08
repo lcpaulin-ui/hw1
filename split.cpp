@@ -29,18 +29,20 @@ void split(Node*& in, Node*& odds, Node*& evens)
   // WRITE YOUR CODE HERE
 
   // empty case 
-  if(in == 0){
+  if(in == nullptr){
     return;
   }
 
   // evens 
   else if ( ( in->value ) % 2 == 0 ){
-    addNode(evens, in); 
+    addNode(evens, in);
+    return split(in->next, odds, evens);
   }
 
   // odds 
   else {
     addNode(odds, in);
+    return split(in->next, odds, evens);
   }
 
 }
@@ -55,12 +57,14 @@ void addNode(Node*& head, Node*& add){
   // if list empty, make added node the head 
   if(head == nullptr){
     head = add;
-    return;
   }
+  // at end of list, add node 
   else if (temp->next == nullptr){
     temp->next = add;
-    return;  
+    return; 
   }
+
+  // list not empty / at end: update node 
   else
   {
     return addNode(temp->next, add); 
