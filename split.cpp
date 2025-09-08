@@ -21,7 +21,7 @@ struct Node
 #include "split.h"
 
 /* Add a prototype for a helper function here if you need */
-void addNode(Node*& head, Node*& add); 
+//void addNode(Node*& in, Node*& odds, Node*& evens);
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
@@ -33,17 +33,37 @@ void split(Node*& in, Node*& odds, Node*& evens)
     return;
   }
 
-  // evens 
-  else if ( ( in->value ) % 2 == 0 ){
-    addNode(evens, in);
-    return split(in->next, odds, evens);
+  else if (in->value % 2 == 0){
+
+    if(evens == nullptr) {
+      evens = in;
+      evens->next = nullptr; 
+    }
+    else {
+      Node* temp = evens;
+      evens = in;
+      evens->next = temp; 
+    }
+  
   }
 
-  // odds 
   else {
-    addNode(odds, in);
-    return split(in->next, odds, evens);
+    if (odds == nullptr){
+      odds = in;
+      odds->next = nullptr;
+    }
+
+    else{
+      Node* temp = odds;
+      odds = in;
+      odds->next = temp;
+    }
   }
+
+  in = in->next; 
+
+  return split(in, odds, evens); 
+
 
 }
 
@@ -51,22 +71,14 @@ void split(Node*& in, Node*& odds, Node*& evens)
 // helper function to traverse the list to the end, to add the new node.
 
 // pass in head pointer, use it to traverse to list's end and point to inserted node
-
-void addNode(Node*& head, Node*& add){
+/**
+void addNode(Node*& head, Node*& odds, Node*& evens){
   Node* temp = head; 
-  // if list empty, make added node the head 
-  if(head == nullptr){
-    head = add;
-  }
-  // at end of list, add node 
-  else if (temp->next == nullptr){
-    temp->next = add;
-    return; 
-  }
+  // get a pointer to next node 
+  Node* newHead = head; 
 
-  // list not empty / at end: update node 
-  else
-  {
-    return addNode(temp->next, add); 
+  else if (head->value % 2 == 0){
+    
   }
  }
+*/
