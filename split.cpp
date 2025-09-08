@@ -37,7 +37,7 @@ void split(Node*& in, Node*& odds, Node*& evens)
   Node* curr = in;
   in = in->next; 
 
-  else if (curr->value % 2 == 0){
+  if (curr->value % 2 == 0){
     addNode(curr, evens);
   }
   else {
