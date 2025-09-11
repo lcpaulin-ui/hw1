@@ -166,15 +166,16 @@ const std::string& ULListStr::front() const {
    *   - MUST RUN in O(n) 
    */
   std::string* ULListStr::getValAtLoc(size_t loc) const {
-    // traverse the list until you reach that location... 
+     // traverse the list until you reach that location... 
 
     // first check if its less than the size of the occupied spots:
-    if (head_ == NULL || loc >= size_){
+    /*if (head_ == NULL){
+      //std::cout << "here" << std::endl;
       return NULL; 
     }
 
-    int idx = loc % 10;
-    int node = loc / 10 + 1;
+    size_t idx = loc % 10;
+    size_t node = loc / 10 + 1;
 
     // check its in first-last range
     if (loc < head_-> first || loc >= tail_->last){
@@ -191,6 +192,29 @@ const std::string& ULListStr::front() const {
     }
     // now at the node. Just return the loc now 
     return &curr->val[idx]; 
+    */
+
+    if (head_ == NULL) {
+      return NULL; 
+    }
+
+    Item* curr = head_;
+    while(curr != NULL) {
+      size_t filled = curr->last - curr->first;
+      size_t idx = curr->first;
+
+      if (loc < filled){
+        // found the node i want 
+        // just return 
+        return &curr->val[idx + loc]; 
+      }
+
+      else{
+        curr = curr->next; 
+        loc = loc - filled; 
+      }
+    }
+      return NULL; 
   }
 
 

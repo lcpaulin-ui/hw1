@@ -13,9 +13,12 @@ int main(int argc, char* argv[])
     //std::cout << "start\n";
     ULListStr dat;
     dat.push_back("hi");
+    std::cout << dat.size() << std::endl; 
     dat.push_back("bye");
+    std::cout << dat.size() << std::endl; 
     //std::cout << "hi " << std::endl;
     std::cout << dat.get(0) << std::endl;
+
 
     return 0;
 }
