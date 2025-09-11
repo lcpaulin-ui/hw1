@@ -97,7 +97,8 @@ void ULListStr::push_front(const std::string& newstr) {
   // if i got here, then there's space on the list AND first isnt 0 
   else {
     head_->first--;
-    head_->val[head_->first] = newstr; 
+    head_->val[head_->first] = newstr;
+    size_++;  
   }
 
   return; 
