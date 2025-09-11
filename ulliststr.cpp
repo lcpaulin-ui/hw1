@@ -26,7 +26,7 @@ size_t ULListStr::size() const
 
 // WRITE YOUR CODE HERE
 
-void ULlistStr::push_back(const std::string& newstr) {
+void ULListStr::push_back(const std::string& newstr) {
   bool done = false; 
   // check if list is empty 
   if (head_ == NULL){
@@ -65,7 +65,7 @@ void ULlistStr::push_back(const std::string& newstr) {
   return; 
 }
 
-void ULlistStr::push_front(std::string& val) {
+void ULListStr::push_front(std::string& val) {
   bool done = false; 
   // check if list is empty 
   if (head_ == NULL){
@@ -105,7 +105,7 @@ void ULlistStr::push_front(std::string& val) {
   return; 
 }
 
-void ULlistStr::pop_back(const std::string& val) {
+void ULListStr::pop_back(const std::string& val) {
 
   if(tail_ == null){
     cout << "empty list?" << endl;
@@ -125,7 +125,7 @@ void ULlistStr::pop_back(const std::string& val) {
   }
 }
 
-void ULlistStr::pop_front(std::string& val) {
+void ULListStr::pop_front(std::string& val) {
   // update list size
   // take it out i guess delete pointer
 
@@ -150,13 +150,13 @@ void ULlistStr::pop_front(std::string& val) {
 /*Returns a const reference to the back element
 *   - MUST RUN in O(1)*/ 
 
-const std::string& ULlistStr::back() {
+const std::string& ULListStr::back() {
 
   return string* backstr = tail_->val[tail_->last-1];
   
 }
 
-const std::string& ULlistStr::front() {
+const std::string& ULListStr::front() {
   return string* backstr = head_->val[head_->first];
   
 }
