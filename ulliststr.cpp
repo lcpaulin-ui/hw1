@@ -68,7 +68,7 @@ void ULListStr::push_back(const std::string& newstr) {
 void ULListStr::push_front(const std::string& newstr) {
   bool done = false; 
   // check if list is empty 
-  if (head_ == tail_ ==  NULL){
+  if (head_ == NULL || tail_ ==  NULL){
     head_ = new Item();
     tail_ = head_;  
     done = true; 
@@ -114,7 +114,7 @@ void ULListStr::pop_back() {
   tail_->last--; 
   size_--;
 
-  if (tail_->first == tail_->last == 0){
+  if (tail_->first == 0 && tail_->last == ARRSIZE){
     // item is EMPTY: deallocate
     Item* temp = tail_;
     tail_ = tail_->prev;
@@ -136,7 +136,7 @@ void ULListStr::pop_front() {
   head_->first++; 
   size_--;
 
-  if (head_->first == head_->last == 0){
+  if (head_->first == 0 && head_->last == ARRSIZE){
     // item is EMPTY: deallocate
     Item* temp = head_;
     head_ = head_->next; 
@@ -173,20 +173,25 @@ const std::string& ULListStr::front() const {
       return NULL; 
     }
 
-    // find which node it's on 
+    // find which locs are unoccupied
+    int free = tail_->last - head_->first; 
+    if (loc >= free){
+      return NULL; 
+    }
+
     int node = loc % 10 + 1; 
 
-    // go to node
+    // now its in the range, go to node
     Item* curr = head_;  
 
-    if (node != 1){
+    if (loc != 1){
       for (int i=0; i < node; i++){
         curr = curr->next; 
       }
     }
     // now at the node. traverse it until you find the loc. 
     int idx = loc / 10; 
-    return &curr->val[idx]; 
+    return &curr->val[idx-1]; 
   }
 
 
