@@ -169,7 +169,7 @@ const std::string& ULListStr::front() const {
     // traverse the list until you reach that location... 
 
     // first check if its less than the size of the occupied spots:
-    if (head_ == NULL || loc >= tail_->last){
+    if (head_ == NULL || loc >= size_){
       return NULL; 
     }
 
