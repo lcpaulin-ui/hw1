@@ -47,9 +47,10 @@ void ULListStr::push_back(const std::string& newstr) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the front of the list (index 0) 
-  tail_->val[tail_->first] = newstr; 
+  tail_->val[0] = newstr; 
 
   // first = 0, last = 1
+  tail_->first = 0; 
   tail_->last = 1; 
   size_++; 
 
@@ -58,17 +59,17 @@ void ULListStr::push_back(const std::string& newstr) {
 
   // if i got here, then there's space on the list. 
   else{
-    tail_->val[tail_->last] = newstr; 
+    tail_->val[tail_->last-1] = newstr; 
     tail_->last++; 
     size_++; 
   }
   return; 
 }
 
-void ULListStr::push_front(const std::string& val) {
+void ULListStr::push_front(const std::string& newstr) {
   bool done = false; 
   // check if list is empty 
-  if (head_ == NULL){
+  if (head_ == tail_ ==  NULL){
     head_ = new Item();
     tail_ = head_;  
     done = true; 
@@ -79,28 +80,28 @@ void ULListStr::push_front(const std::string& val) {
     Item* newNode = new Item(); 
     // change head
     Item* temp = head_;
-    temp->next = newNode; 
-    newNode->prev = head_; 
+    head_->prev = newNode;
+    newNode->next = head_;
     head_ = newNode; 
     done = true; 
   }
   // now i have created a new node for the value
   // for both previous cases: push to the BACK of the list (index arrsize-1) 
-  tail_->val[ARRSIZE-1] = val; 
+  head_->val[ARRSIZE-1] = newstr; 
 
   
-  head_->last = 10; 
-  head_->first = 9; 
+  head_->last = ARRSIZE; 
+  head_->first = ARRSIZE-1; 
   size_++; 
 
   if(done)
   {return;} 
 
-  // if i got here, then there's space on the list. 
-  else{
-    head_->val[head_->first] = val; 
+  // if i got here, then there's space on the list AND first isnt 0 
+  else {
+    head_->first--;
+    head_->val[head_->first] = newstr; 
   }
-  head_->first--; 
 
   return; 
 }
