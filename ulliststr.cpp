@@ -47,7 +47,7 @@ void ULListStr::push_back(const std::string& newstr) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the front of the list (index 0) 
-  tail_->val[first] = newstr; 
+  tail_->val[tail_->first] = newstr; 
 
   // first = 0, last = 1
   tail_->last = 1; 
@@ -65,7 +65,7 @@ void ULListStr::push_back(const std::string& newstr) {
   return; 
 }
 
-void ULListStr::push_front(std::string& val) {
+void ULListStr::push_front(const std::string& val) {
   bool done = false; 
   // check if list is empty 
   if (head_ == NULL){
@@ -86,7 +86,7 @@ void ULListStr::push_front(std::string& val) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the BACK of the list (index arrsize-1) 
-  tail_->val[ARRSIZE-1] = newstr; 
+  tail_->val[ARRSIZE-1] = val; 
 
   
   head_->last = 10; 
@@ -98,21 +98,21 @@ void ULListStr::push_front(std::string& val) {
 
   // if i got here, then there's space on the list. 
   else{
-    head_->val[head_->first] = newstr; 
+    head_->val[head_->first] = val; 
   }
   head_->first--; 
 
   return; 
 }
 
-void ULListStr::pop_back(const std::string& val) {
+void ULListStr::pop_back() {
 
-  if(tail_ == null){
-    cout << "empty list?" << endl;
+  if(tail_ == NULL){
+   //std::cout << "empty list?" << endl;
     return; 
   }
 
-  tail_->val[last-1] = ""; 
+  tail_->val[tail_->last-1] = ""; 
   tail_->last--; 
   size_--;
 
@@ -125,16 +125,16 @@ void ULListStr::pop_back(const std::string& val) {
   }
 }
 
-void ULListStr::pop_front(std::string& val) {
+void ULListStr::pop_front() {
   // update list size
   // take it out i guess delete pointer
 
-  if(head_ == null){
-    cout << "empty list?" << endl;
+  if(head_ == NULL){
+    //std::cout << "empty list?" << endl;
     return; 
   }
 
-  head_->val[first] = ""; 
+  head_->val[head_->first] = ""; 
   head_->first++; 
   size_--;
 
@@ -150,14 +150,15 @@ void ULListStr::pop_front(std::string& val) {
 /*Returns a const reference to the back element
 *   - MUST RUN in O(1)*/ 
 
-const std::string& ULListStr::back() {
-
-  return string* backstr = tail_->val[tail_->last-1];
+const std::string& ULListStr::back() const {
+  std::string& backstr = tail_->val[tail_->last -1];
+  return backstr;
   
 }
 
-const std::string& ULListStr::front() {
-  return string* backstr = head_->val[head_->first];
+const std::string& ULListStr::front() const {
+  std::string& frtstr = head_->val[head_->first];
+  return frtstr;
   
 }
 
@@ -166,7 +167,7 @@ const std::string& ULListStr::front() {
    *  if loc is valid and NULL otherwise
    *   - MUST RUN in O(n) 
    */
-  std::string* getValAtLoc(size_t loc) const{
+  std::string* ULListStr::getValAtLoc(size_t loc) const {
     // traverse the list until you reach that location... 
 
     // first check if its less than the size of the occupied spots:
@@ -185,7 +186,7 @@ const std::string& ULListStr::front() {
 
     // now at the node. traverse it until you find the loc. 
     int idx = loc / 10; 
-    return curr->val[idx]; 
+    return &curr->val[idx]; 
   }
 
 
