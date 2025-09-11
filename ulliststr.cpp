@@ -169,12 +169,12 @@ const std::string& ULListStr::front() const {
     // traverse the list until you reach that location... 
 
     // first check if its less than the size of the occupied spots:
-    if (head_ == NULL){
+    if (head_ == NULL || loc >= size_){
       return NULL; 
     }
 
     // find which node it's on 
-    int node = 0 % 10 + 1; 
+    int node = loc % 10 + 1; 
 
     // go to node
     Item* curr = head_;  
