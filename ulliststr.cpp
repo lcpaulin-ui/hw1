@@ -114,7 +114,7 @@ void ULListStr::pop_back() {
   tail_->last--; 
   size_--;
 
-  if (tail_->first == 0 && tail_->last == ARRSIZE){
+  if (tail_->first == 0 && tail_->last == 0){
     // item is EMPTY: deallocate
     Item* temp = tail_;
     tail_ = tail_->prev;
@@ -136,7 +136,7 @@ void ULListStr::pop_front() {
   head_->first++; 
   size_--;
 
-  if (head_->first == 0 && head_->last == ARRSIZE){
+  if (head_->first == 0 && head_->last == 0){
     // item is EMPTY: deallocate
     Item* temp = head_;
     head_ = head_->next; 
