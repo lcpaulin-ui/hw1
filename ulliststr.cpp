@@ -31,7 +31,7 @@ void ULListStr::push_back(const std::string& newstr) {
   // check if list is empty 
   if (head_ == NULL){
     head_ = new Item();
-    tail_ = head_;  
+    tail_ = head_;
     done = true; 
   }
 
@@ -47,19 +47,18 @@ void ULListStr::push_back(const std::string& newstr) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the front of the list (index 0) 
-  tail_->val[0] = newstr; 
-
-  // first = 0, last = 1
-  tail_->first = 0; 
-  tail_->last = 1; 
-  size_++; 
-
-  if(done)
-  {return;} 
+  if (done){
+    tail_->val[0] = newstr; 
+    tail_->first = 0; 
+    tail_->last = 1; 
+    size_++; 
+    return; 
+  }
+ 
 
   // if i got here, then there's space on the list. 
   else{
-    tail_->val[tail_->last-1] = newstr; 
+    tail_->val[tail_->last] = newstr; 
     tail_->last++; 
     size_++; 
   }
@@ -87,15 +86,13 @@ void ULListStr::push_front(const std::string& newstr) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the BACK of the list (index arrsize-1) 
-  head_->val[ARRSIZE-1] = newstr; 
-
-  
-  head_->last = ARRSIZE; 
+  if (done){
+  head_->val[ARRSIZE-1] = newstr;
+  head_->last = ARRSIZE;
   head_->first = ARRSIZE-1; 
-  size_++; 
-
-  if(done)
-  {return;} 
+  size_++;
+  return; 
+  }
 
   // if i got here, then there's space on the list AND first isnt 0 
   else {
