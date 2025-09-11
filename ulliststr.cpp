@@ -68,7 +68,7 @@ void ULListStr::push_back(const std::string& newstr) {
 void ULListStr::push_front(const std::string& newstr) {
   bool done = false; 
   // check if list is empty 
-  if (head_ == NULL || tail_ ==  NULL){
+  if (head_ == NULL){
     head_ = new Item();
     tail_ = head_;  
     done = true; 
