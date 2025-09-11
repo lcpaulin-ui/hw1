@@ -79,7 +79,7 @@ void ULListStr::push_front(const std::string& newstr) {
   else if (head_->first == 0){
     Item* newNode = new Item(); 
     // change head
-    Item* temp = head_;
+    //Item* temp = head_;
     head_->prev = newNode;
     newNode->next = head_;
     head_ = newNode; 
@@ -177,14 +177,16 @@ const std::string& ULListStr::front() const {
     }
 
     // find which node it's on 
-    int node = loc % 10 + 1; 
+    int node = 0 % 10 + 1; 
 
     // go to node
     Item* curr = head_;  
-    for (int i=0; i < node; i++){
-      curr = curr->next; 
-    }
 
+    if (node != 1){
+      for (int i=0; i < node; i++){
+        curr = curr->next; 
+      }
+    }
     // now at the node. traverse it until you find the loc. 
     int idx = loc / 10; 
     return &curr->val[idx]; 

@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <sstream>
+//#include <iostream>
 
 #include "ulliststr.h"
 
@@ -9,5 +10,12 @@
 
 int main(int argc, char* argv[])
 {
+    std::cout << "start\n";
+    ULListStr dat;
+    dat.push_back("hi");
+    dat.push_back("bye");
+    std::cout << "hi " << std::endl;
+    std::cout << dat.get(0) << std::endl;
 
+    return 0;
 }
