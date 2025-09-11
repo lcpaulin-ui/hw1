@@ -169,17 +169,17 @@ const std::string& ULListStr::front() const {
     // traverse the list until you reach that location... 
 
     // first check if its less than the size of the occupied spots:
-    if (head_ == NULL || loc >= size_){
+    if (head_ == NULL || loc >= tail_->last){
       return NULL; 
     }
 
-    // find which locs are unoccupied
-    int free = tail_->last - head_->first; 
-    if (loc >= free){
+    int idx = loc % 10;
+    int node = loc / 10 + 1;
+
+    // check its in first-last range
+    if (loc < head_-> first || loc >= tail_->last){
       return NULL; 
     }
-
-    int node = loc % 10 + 1; 
 
     // now its in the range, go to node
     Item* curr = head_;  
@@ -189,9 +189,8 @@ const std::string& ULListStr::front() const {
         curr = curr->next; 
       }
     }
-    // now at the node. traverse it until you find the loc. 
-    int idx = loc / 10; 
-    return &curr->val[idx-1]; 
+    // now at the node. Just return the loc now 
+    return &curr->val[idx]; 
   }
 
 
