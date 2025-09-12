@@ -1,8 +1,12 @@
+#include <gtest/gtest.h>
 #include <string>
 #include <vector>
 #include <iostream>
 #include <sstream>
 //#include <iostream>
+
+#include <map>
+#include <cstdlib>
 
 #include "ulliststr.h"
 
@@ -18,6 +22,7 @@ int main(int argc, char* argv[])
 //testing push back 
 
     ULListStr data; 
+    // popped back from empty list 
     data.pop_back();
     data.pop_front();
 
@@ -101,7 +106,7 @@ int main(int argc, char* argv[])
         };
 
     for (size_t i = 0 ; i < 10; i++){
-        list.push_front(movies[i]); 
+        list.push_back(movies[i]); 
     }
 
     // now have list of 10 items. remove
@@ -125,14 +130,28 @@ int main(int argc, char* argv[])
     list.pop_front(); 
 
     // list still size 10. 
-    // return back element which is wicked 
+    // return back element which is wicked
+    for (size_t i=0; i < 10; i ++){
+        std::cout << i << ": " <<  list.get(i) << std::endl;
+    } 
     std::string movie = list.back();
     if (movie != "wicked"){
-        std::cout << "movie should be wicked, but it's " << list.front() << std::endl; 
+        std::cout << "movie should be wicked, but it's " << list.back() << std::endl; 
     }
 
-    // pop front last element in list 
+    list.set(9, "wicked 2"); 
 
+    std::cout << "now with wicked 2: " << std::endl;
+
+    for (size_t i=0; i < 10; i ++){
+        std::cout << i << ": " <<  list.get(i) << std::endl;
+    } 
+
+    list.clear(); 
+
+    if (list.size() != 0){
+        std::cout << "cleared list but size isnt 0" << std::endl;
+    }
 
     return 0;
 }

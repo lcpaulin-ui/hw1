@@ -164,24 +164,21 @@ void ULListStr::pop_front() {
     delete temp; 
   } 
 }
-/*Returns a const reference to the back element
+/*Returns a const reference to the front element
 *   - MUST RUN in O(1)*/ 
 
-const std::string& ULListStr::front() const {
+const std::string& ULListStr::back() const {
   if(tail_ == NULL || tail_->first == tail_->last ){
     throw std::invalid_argument("out of range!");
   }
-  std::string& backstr = tail_->val[tail_->last -1];
-  return backstr;
+  return tail_->val[tail_->last -1];
 }
 
-const std::string& ULListStr::back() const {
+const std::string& ULListStr::front() const {
   if(head_ == NULL || head_->first == head_->last ){
     throw std::invalid_argument("out of range!");
   }
-  std::string& frtstr = head_->val[head_->first];
-  return frtstr;
-  
+  return head_->val[head_->first];
 }
 
  /** 
