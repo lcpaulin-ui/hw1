@@ -97,6 +97,7 @@ while(temp != NULL){
     delete evens;
     delete odds;
     delete head; 
+    delete temp; 
 
 
 
