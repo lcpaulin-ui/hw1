@@ -100,14 +100,14 @@ while(head){
     head = temp; 
 }
 while(evens){
-    Node* temp = head->next;
-    delete head;
-    head = temp; 
+    Node* temp = evens->next;
+    delete evens;
+    evens = temp; 
 }
 while(odds){
-    Node* temp = head->next;
-    delete head;
-    head = temp; 
+    Node* temp = odds->next;
+    delete odds;
+    odds = temp; 
 }
 
 }
