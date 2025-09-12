@@ -137,9 +137,9 @@ void ULListStr::pop_back() {
 void ULListStr::pop_front() {
   // update list size
   // take it out i guess delete pointer
-  if (size_ == 0)[
+  if (size_ == 0){
     return; 
-  ]
+  }
   if(head_ == NULL ){
     //std::cout << "empty list?" << endl;
     return; 
