@@ -94,7 +94,9 @@ while(temp != NULL){
     temp = temp->next; 
 }
 
-// now cout what i got 
+    delete evens;
+    delete odds;
+    delete head; 
 
 
 
