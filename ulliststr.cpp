@@ -105,21 +105,31 @@ void ULListStr::push_front(const std::string& newstr) {
 }
 
 void ULListStr::pop_back() {
+  if (size_ == 0){
+    return; 
+  }
 
-  if(tail_ == NULL){
+  if(tail_ == NULL || tail_->last == 0){
    //std::cout << "empty list?" << endl;
     return; 
   }
+
 
   tail_->val[tail_->last-1] = ""; 
   tail_->last--; 
   size_--;
 
-  if (tail_->first == 0 && tail_->last == 0){
+  if (tail_->first == tail_->last){
     // item is EMPTY: deallocate
     Item* temp = tail_;
     tail_ = tail_->prev;
-    tail_->next = NULL; 
+    if(tail_ != NULL){ // still NODE on list  
+      tail_->next = NULL;
+      // return; 
+    }
+    else{ // this means that tail is null, aka the list is now empty...
+      head_ = NULL;
+    }
     delete temp; 
   }
 }
@@ -127,35 +137,45 @@ void ULListStr::pop_back() {
 void ULListStr::pop_front() {
   // update list size
   // take it out i guess delete pointer
-
-  if(head_ == NULL){
+  if (size_ == 0)[
+    return; 
+  ]
+  if(head_ == NULL ){
     //std::cout << "empty list?" << endl;
     return; 
   }
-
   head_->val[head_->first] = ""; 
   head_->first++; 
   size_--;
 
-  if (head_->first == 0 && head_->last == 0){
-    // item is EMPTY: deallocate
+  if(head_->first == head_->last) { // if the list is empty
     Item* temp = head_;
     head_ = head_->next; 
-    head_->prev = NULL; 
+    if (head_ != NULL){ // still nodes on list
+      head_->prev = NULL; 
+    }
+
+    else{ // this means that head is null, aka the list is now empty...
+      tail_ = NULL;
+    }
     delete temp; 
-  }
-  
+  } 
 }
 /*Returns a const reference to the back element
 *   - MUST RUN in O(1)*/ 
 
 const std::string& ULListStr::back() const {
+  if(tail_ == NULL || tail_->first == tail_->last ){
+    throw std::invalid_argument("out of range!");
+  }
   std::string& backstr = tail_->val[tail_->last -1];
   return backstr;
-  
 }
 
 const std::string& ULListStr::front() const {
+  if(head_ == NULL || head_->first == head_->last ){
+    throw std::invalid_argument("out of range!");
+  }
   std::string& frtstr = head_->val[head_->first];
   return frtstr;
   
