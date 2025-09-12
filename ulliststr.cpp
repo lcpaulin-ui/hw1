@@ -35,7 +35,7 @@ void ULListStr::push_back(const std::string& newstr) {
     done = true; 
   }
 
-  // if there's no space to push back, have to alloc new item
+  // if there's no space to push back, i have to alloc new item
   else if (tail_->last == ARRSIZE){
     Item* newNode = new Item(); 
     // change tail
@@ -46,7 +46,8 @@ void ULListStr::push_back(const std::string& newstr) {
     done = true; 
   }
   // now i have created a new node for the value
-  // for both previous cases: push to the front of the list (index 0) 
+  // for both previous cases:  i have push to the front of the list (index 0)
+  // now i have more space t push back when i want to in indexes 1-9  
   if (done){
     tail_->val[0] = newstr; 
     tail_->first = 0; 
@@ -86,6 +87,7 @@ void ULListStr::push_front(const std::string& newstr) {
   }
   // now i have created a new node for the value
   // for both previous cases: push to the BACK of the list (index arrsize-1) 
+  // now i can keep pushing fronttt
   if (done){
   head_->val[ARRSIZE-1] = newstr;
   head_->last = ARRSIZE;
@@ -94,7 +96,7 @@ void ULListStr::push_front(const std::string& newstr) {
   return; 
   }
 
-  // if i got here, then there's space on the list AND first isnt 0 
+  // if i got here, then there is's space on the list AND the first isnt 0 
   else {
     head_->first--;
     head_->val[head_->first] = newstr;
@@ -105,7 +107,7 @@ void ULListStr::push_front(const std::string& newstr) {
 }
 
 void ULListStr::pop_back() {
-  if (size_ == 0){
+  if (size_ == 0){ // cant acces list 
     return; 
   }
 
@@ -119,8 +121,9 @@ void ULListStr::pop_back() {
   tail_->last--; 
   size_--;
 
-  if (tail_->first == tail_->last){
-    // item is EMPTY: deallocate
+  if (tail_->first == tail_->last){ // this means that there's only one element in the array and now i'm deleted it 
+    // so have to dealloc 
+    // item is EMPTY: deallocate and hcnage ptrs 
     Item* temp = tail_;
     tail_ = tail_->prev;
     if(tail_ != NULL){ // still NODE on list  
@@ -220,8 +223,11 @@ const std::string& ULListStr::front() const {
     }
 
     Item* curr = head_;
+    
     while(curr != NULL) {
+      // get the number of filled elements. 
       size_t filled = curr->last - curr->first;
+      //starting index of whole list 
       size_t idx = curr->first;
 
       if (loc < filled){
