@@ -167,7 +167,7 @@ void ULListStr::pop_front() {
 /*Returns a const reference to the back element
 *   - MUST RUN in O(1)*/ 
 
-const std::string& ULListStr::back() const {
+const std::string& ULListStr::front() const {
   if(tail_ == NULL || tail_->first == tail_->last ){
     throw std::invalid_argument("out of range!");
   }
@@ -175,7 +175,7 @@ const std::string& ULListStr::back() const {
   return backstr;
 }
 
-const std::string& ULListStr::front() const {
+const std::string& ULListStr::back() const {
   if(head_ == NULL || head_->first == head_->last ){
     throw std::invalid_argument("out of range!");
   }
