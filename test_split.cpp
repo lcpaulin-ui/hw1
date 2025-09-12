@@ -94,11 +94,20 @@ while(temp != NULL){
     temp = temp->next; 
 }
 
-    delete evens;
-    delete odds;
-    delete head; 
-    delete temp; 
-
-
+while(head){
+    Node* temp = head->next;
+    delete head;
+    head = temp; 
+}
+while(evens){
+    Node* temp = head->next;
+    delete head;
+    head = temp; 
+}
+while(odds){
+    Node* temp = head->next;
+    delete head;
+    head = temp; 
+}
 
 }
